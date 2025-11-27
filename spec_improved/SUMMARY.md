@@ -313,10 +313,15 @@
 | `API_SPECIFICATION.md` | ~800 | REST API + WebSocket |
 | `NON_FUNCTIONAL_REQUIREMENTS.md` | ~900 | NFR |
 | `USER_STORIES.md` | ~600 | 40 пользовательских историй |
+| `SCORING_ALGORITHM.md` | ~800 | Алгоритмы расчёта оценок |
+| `SITEMAP.md` | ~600 | Карта экранов (50+ страниц) |
+| `README.md` | ~400 | Навигация по документации |
+| `DEPLOYMENT_GUIDE.md` | ~1000 | Руководство по развёртыванию |
+| `TEST_CASES.md` | ~1200 | Тест-кейсы для QA (40+ тестов) |
 | `SUMMARY.md` | ~200 | Резюме (этот файл) |
-| `TODO.md` | ~100 | Список дальнейших задач |
+| `TODO.md` | ~500 | Список дальнейших задач |
 
-**Итого:** 8 новых файлов, ~4,800 строк документации
+**Итого:** 14 новых файлов, ~9,200 строк документации
 
 ---
 
@@ -335,6 +340,7 @@
 ├── 📄 ФУНКЦИОНАЛЬНАЯ_СПЕЦИФИКАЦИЯ (2).md (исходный)
 ├── 📄 claude_code_prompt.md
 └── 📁 spec_improved/
+    ├── 📄 README.md (руководство по навигации)
     ├── 📄 ANALYSIS_REPORT.md
     ├── 📄 GLOSSARY.md
     ├── 📄 DATABASE_SCHEMA.md
@@ -342,6 +348,10 @@
     ├── 📄 API_SPECIFICATION.md
     ├── 📄 NON_FUNCTIONAL_REQUIREMENTS.md
     ├── 📄 USER_STORIES.md
+    ├── 📄 SCORING_ALGORITHM.md
+    ├── 📄 SITEMAP.md
+    ├── 📄 DEPLOYMENT_GUIDE.md
+    ├── 📄 TEST_CASES.md
     ├── 📄 SUMMARY.md
     └── 📄 TODO.md
 ```
