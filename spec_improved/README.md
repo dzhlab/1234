@@ -1,9 +1,9 @@
 # Улучшенная функциональная спецификация
 ## Система управления соревнованиями по художественной гимнастике
 
-> **Версия:** 2.6 (production-ready)
+> **Версия:** 2.7 (production-ready + security)
 > **Дата:** 2025-11-27
-> **Статус:** Production Ready
+> **Статус:** Production Ready with Comprehensive Security
 
 ---
 
@@ -658,7 +658,81 @@ AC-3.1.3: Автоматический расчёт итогового D-score
 
 ---
 
-### 24. TODO.md (500 строк)
+### 24. SECURITY.md (2500 строк)
+
+**Описание:** Комплексная спецификация безопасности системы
+
+**Содержание:**
+- **Security Overview**: Принципы безопасности, архитектура, threat model
+- **Authentication**:
+  - Password security (bcrypt, политики паролей)
+  - JWT tokens (access + refresh, rotation)
+  - Multi-Factor Authentication (TOTP, backup codes)
+  - Session management (Redis, concurrent sessions)
+  - Account lockout (rate limiting, notifications)
+- **Authorization**:
+  - RBAC (7 ролей, 20+ permissions)
+  - Permission middleware
+  - Resource-based authorization
+- **Data Protection**:
+  - Encryption at rest (PostgreSQL TDE, application-level AES-256-GCM)
+  - Encryption in transit (TLS 1.2/1.3, WebSocket security)
+  - Data minimization (retention policies, cleanup jobs)
+- **Application Security**:
+  - Input validation (Joi schemas, sanitization)
+  - SQL injection prevention (parameterized queries, ORM)
+  - XSS prevention (DOMPurify, output escaping)
+  - CSRF protection (CSRF tokens, SameSite cookies)
+  - Rate limiting (global, auth, API)
+- **API Security**:
+  - API key authentication
+  - Request signing (HMAC-SHA256)
+  - API versioning
+- **Infrastructure Security**:
+  - Docker security (non-root user, read-only filesystem)
+  - Secrets management (HashiCorp Vault, env validation)
+- **Network Security**:
+  - Nginx TLS configuration
+  - Security headers (HSTS, CSP, X-Frame-Options)
+- **Monitoring & Incident Response**:
+  - Security monitoring (Winston + Elasticsearch)
+  - Intrusion detection (impossible travel, API abuse)
+  - Incident response playbook (4 severity levels)
+- **Compliance & Privacy**:
+  - GDPR compliance (data subject rights, DPA)
+  - Audit logging (PostgreSQL triggers)
+- **Security Testing**:
+  - Penetration testing schedule
+  - CI/CD security scanning (SAST, DAST, dependency check)
+  - Security checklist
+- **Security Best Practices**:
+  - Development practices (10 правил)
+  - Deployment practices (10 правил)
+
+**Для кого:**
+- Security engineers (полная спецификация безопасности)
+- DevOps engineers (deployment security, infrastructure)
+- Backend developers (authentication, authorization, encryption)
+- Compliance officers (GDPR, audit requirements)
+- Penetration testers (threat model, security controls)
+
+**Когда читать:**
+- При проектировании security architecture
+- При внедрении authentication/authorization
+- При подготовке к security audit
+- При расследовании security incidents
+- При настройке production environment
+
+**Связь с другими документами:**
+- NON_FUNCTIONAL_REQUIREMENTS.md - общие NFR по безопасности
+- ACCEPTANCE_CRITERIA.md - security acceptance criteria
+- ERROR_HANDLING.md - безопасная обработка ошибок
+- DEPLOYMENT_GUIDE.md - secure deployment practices
+- CONTRIBUTING.md - secure development practices
+
+---
+
+### 25. TODO.md (500 строк)
 
 **Описание:** Список задач на будущее
 
@@ -719,6 +793,7 @@ spec_improved/
 ├── CHANGELOG.md
 ├── USER_GUIDES.md
 ├── ACCEPTANCE_CRITERIA.md
+├── SECURITY.md
 ├── SUMMARY.md
 └── TODO.md
 ```
@@ -736,9 +811,10 @@ spec_improved/
 
 ### Для разработчиков:
 
-1. **Backend:** `API_SPECIFICATION.md` → `DATABASE_SCHEMA.md` → `SCORING_ALGORITHM.md` → `ERROR_HANDLING.md`
-2. **Frontend:** `SITEMAP.md` → `API_SPECIFICATION.md` → `USER_STORIES.md` → `ERROR_HANDLING.md`
-3. **DevOps:** `DEPLOYMENT_GUIDE.md` → `docker-compose.yml` → `.env.example` → `NON_FUNCTIONAL_REQUIREMENTS.md`
+1. **Backend:** `API_SPECIFICATION.md` → `DATABASE_SCHEMA.md` → `SCORING_ALGORITHM.md` → `ERROR_HANDLING.md` → `SECURITY.md`
+2. **Frontend:** `SITEMAP.md` → `API_SPECIFICATION.md` → `USER_STORIES.md` → `ERROR_HANDLING.md` → `SECURITY.md`
+3. **DevOps:** `DEPLOYMENT_GUIDE.md` → `docker-compose.yml` → `.env.example` → `SECURITY.md` → `NON_FUNCTIONAL_REQUIREMENTS.md`
+4. **Security:** `SECURITY.md` → `ACCEPTANCE_CRITERIA.md` (Security section) → `ERROR_HANDLING.md` → `DEPLOYMENT_GUIDE.md`
 
 ### Для QA:
 
@@ -760,13 +836,14 @@ spec_improved/
 
 | Метрика | Значение |
 |---------|----------|
-| Всего файлов | 23 |
-| Общее количество строк | ~25,800 |
-| Новых диаграмм (Mermaid) | 15+ |
+| Всего файлов | 24 |
+| Общее количество строк | ~28,300 |
+| Новых диаграмм (Mermaid) | 16+ |
 | Таблиц базы данных | 13 |
 | REST API эндпоинтов | 25+ |
 | API примеров | 100+ |
 | **Acceptance Criteria** | **100+** |
+| **Security Controls** | **50+** |
 | Пользовательских историй | 40 |
 | Глоссарных терминов | 50+ |
 | Экранов системы | 50+ |
