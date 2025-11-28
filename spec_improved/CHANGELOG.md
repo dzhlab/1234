@@ -10,16 +10,41 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Planned
-- User manuals for each role (Organizer, Judge, Secretary, Athlete, Viewer)
 - Video tutorials for common workflows
 - Mobile application for judges and viewers
 - AI-powered automatic error detection in performances
 - Integration with video playback systems
 - English translation of key documentation
+- Interface screenshots for all user roles
 
 ---
 
-## [2.3.0] - 2025-11-27
+## [2.5.0] - 2025-11-27
+
+### Added
+- **USER_GUIDES.md** (~3500 lines): Comprehensive user manuals for all system roles
+  - **Organizer Guide**: Step-by-step competition creation, athlete registration, group formation, judge assignment, monitoring, and results export
+  - **Chief Judge Guide**: Jury verification, score validation, dispute resolution, final score confirmation, video review
+  - **Judge Guide**: D-score and E-score submission, offline mode operation, error correction procedures
+  - **Secretary Guide**: Performance status management, score reception, final score calculation, violation processing, protocol generation and publication
+  - **Athlete Guide**: Competition registration, schedule viewing, performance preparation, results viewing, appeals process
+  - **Viewer Guide**: Online results access, athlete search, notification subscriptions, scoring system understanding
+  - **Administrator Guide**: User management, system monitoring, backup/restore, system updates, troubleshooting
+
+### Changed
+- **README.md**: Added USER_GUIDES.md section, updated statistics (22 files, ~22,500 lines)
+- **SUMMARY.md**: Updated achievements list, file statistics, version number
+- **TODO.md**: Marked user guides task as completed
+
+### Impact
+- Complete user documentation coverage for all 7 system roles
+- Practical step-by-step instructions with screenshots placeholders
+- FAQ sections for each role
+- Ready for onboarding new users without external training
+
+---
+
+## [2.4.0] - 2025-11-27
 
 ### Added
 - **docker-compose.yml**: Complete multi-container orchestration configuration
