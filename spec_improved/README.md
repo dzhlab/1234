@@ -459,7 +459,72 @@
 
 ---
 
-### 18. SUMMARY.md (200 строк)
+### 18. API_EXAMPLES.md (2000 строк)
+
+**Описание:** Полные примеры API запросов и ответов
+
+**Содержание:**
+- Примеры JSON payload для всех REST API endpoints
+- Authentication, Competitions, Athletes, Judges, Scores, Start Lists, Events APIs
+- Примеры ответов (success и error)
+- WebSocket события с полными JSON примерами
+- Error responses с полной структурой
+- Примеры использования в cURL, JavaScript (fetch), Python (requests)
+- Postman коллекция
+
+**Для кого:** Frontend разработчики, Backend разработчики, QA (для API тестов)
+
+**Когда читать:** При интеграции frontend с backend, при написании API тестов, при отладке
+
+---
+
+### 19. CONTRIBUTING.md (1500 строк)
+
+**Описание:** Руководство для разработчиков желающих внести вклад
+
+**Содержание:**
+- Настройка окружения разработки (Node.js, PostgreSQL, Redis, Docker)
+- Процесс разработки (branching strategy, commit messages)
+- Code style и стандарты (JavaScript/TypeScript, SQL, React)
+- ESLint, Prettier настройки
+- Тестирование (unit, integration, E2E)
+- Pull Request процесс и code review
+- Архитектурные решения и design patterns
+- Database миграции (Knex.js)
+- API разработка (route → controller → service pattern)
+- Frontend разработка (React компоненты, стили, тесты)
+- Документация standards
+- Code of Conduct
+
+**Для кого:** Новые разработчики, Open source контрибьюторы
+
+**Когда читать:** Перед началом разработки, при создании Pull Request
+
+---
+
+### 20. CHANGELOG.md (400 строк)
+
+**Описание:** История изменений проекта
+
+**Содержание:**
+- Все релизы с датами и версиями
+- Изменения по категориям (Added, Changed, Fixed, Security)
+- Follows [Keep a Changelog](https://keepachangelog.com/) format
+- Semantic Versioning (SemVer)
+- Release notes для каждой версии:
+  - v2.3.0 - Production Ready (deployment + error handling)
+  - v2.2.0 - DevOps Ready (deployment guide + test cases)
+  - v2.1.0 - Algorithm Complete (scoring + sitemap)
+  - v2.0.0 - Documentation Foundation (initial specs)
+  - v1.0.0 - Original specification
+
+**Для кого:** Product Manager, Tech Lead, Все члены команды
+
+**Когда читать:** При обновлении версии, для понимания истории проекта
+
+---
+
+### 21. SUMMARY.md (420 строк)
 
 **Описание:** Резюме всех улучшений
 
@@ -474,6 +539,37 @@
 **Для кого:** Все участники проекта
 
 **Когда читать:** Для быстрого ознакомления с тем, что было сделано
+
+---
+
+### 22. TODO.md (500 строк)
+
+**Описание:** Список задач на будущее
+
+**Содержание:**
+
+#### Приоритет 1 (MUST) - 2 задачи:
+1. Исправление противоречий
+2. Добавление недостающих разделов в главный документ
+
+#### Приоритет 2 (SHOULD) - 3 задачи:
+3. Добавление acceptance criteria
+4. Примеры JSON для API
+5. Руководства пользователя
+
+#### Приоритет 3 (COULD) - 3 задачи:
+6. Перевод на английский
+7. Скриншоты интерфейсов
+8. Видео-инструкции
+
+#### Приоритет 4 (RESEARCH) - 3 задачи:
+9. Интеграция с видеосистемой
+10. Мобильное приложение
+11. AI для автоматической оценки
+
+**Для кого:** Product Manager, Tech Lead
+
+**Когда читать:** При планировании дальнейшей работы
 
 ---
 
@@ -497,6 +593,9 @@ spec_improved/
 ├── .env.example
 ├── FAQ.md
 ├── ERROR_HANDLING.md
+├── API_EXAMPLES.md
+├── CONTRIBUTING.md
+├── CHANGELOG.md
 ├── SUMMARY.md
 └── TODO.md
 ```
@@ -537,11 +636,12 @@ spec_improved/
 
 | Метрика | Значение |
 |---------|----------|
-| Всего файлов | 18 |
-| Общее количество строк | ~13,000 |
+| Всего файлов | 21 |
+| Общее количество строк | ~19,000 |
 | Новых диаграмм (Mermaid) | 15+ |
 | Таблиц базы данных | 13 |
 | REST API эндпоинтов | 25+ |
+| API примеров | 100+ |
 | Пользовательских историй | 40 |
 | Глоссарных терминов | 50+ |
 | Экранов системы | 50+ |
@@ -571,6 +671,7 @@ spec_improved/
 | 2025-11-26 | 2.1 | Добавлены SCORING_ALGORITHM.md и SITEMAP.md |
 | 2025-11-27 | 2.2 | Добавлены DEPLOYMENT_GUIDE.md и TEST_CASES.md |
 | 2025-11-27 | 2.3 | Добавлены docker-compose.yml, .env.example, FAQ.md, ERROR_HANDLING.md |
+| 2025-11-27 | 2.4 | Добавлены API_EXAMPLES.md, CONTRIBUTING.md, CHANGELOG.md |
 
 ---
 
