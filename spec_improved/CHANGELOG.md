@@ -16,6 +16,35 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Integration with video playback systems
 - English translation of key documentation
 - Interface screenshots for all user roles
+- Fixing contradictions in original specification
+- Adding missing sections to main document
+
+---
+
+## [2.6.0] - 2025-11-27
+
+### Added
+- **ACCEPTANCE_CRITERIA.md** (~3300 lines): Comprehensive acceptance criteria for all functional requirements
+  - **100+ acceptance criteria** following Given-When-Then format
+  - **10 functional categories**: Competition Management, Athlete Registration, Judging, Results Calculation, Results Publication, Authentication & Authorization, Offline Mode, API & Integrations, Performance, Security
+  - **Verification methods** for each criterion (visual checks, HTTP status codes, DB queries, performance metrics)
+  - **Priority levels**: High/Medium/Low for all criteria
+  - **Error codes glossary**: RG-* error code reference table
+  - **Example criteria** covering all system modules with concrete test scenarios
+
+### Changed
+- **README.md**: Added ACCEPTANCE_CRITERIA.md section (file #23), updated statistics (23 files, ~25,800 lines), enhanced QA navigation guide
+- **SUMMARY.md**: Added achievement #20, updated file count and total lines, updated version to 2.6
+- **TODO.md**: Marked acceptance criteria task (2.1) as completed, updated metrics (26 tasks total completed)
+- **CHANGELOG.md**: Added v2.6.0 release notes
+
+### Impact
+- **QA teams** can now test against detailed, verifiable acceptance criteria
+- **Developers** have clear requirements with specific validation rules
+- **Product Managers** can perform acceptance testing with concrete checkpoints
+- **Code reviewers** can verify implementations against documented criteria
+- Complete test coverage specification for all 10 functional areas
+- Ready for test automation framework implementation
 
 ---
 
