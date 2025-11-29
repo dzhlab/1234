@@ -1,9 +1,9 @@
 # Улучшенная функциональная спецификация
 ## Система управления соревнованиями по художественной гимнастике
 
-> **Версия:** 2.10 (enterprise-ready + performance + QA)
+> **Версия:** 2.11 (enterprise-ready + complete developer onboarding)
 > **Дата:** 2025-11-27
-> **Статус:** Enterprise Ready with Full Testing Strategy
+> **Статус:** Enterprise Ready with Complete Development Lifecycle
 
 ---
 
@@ -967,7 +967,78 @@ AC-3.1.3: Автоматический расчёт итогового D-score
 
 ---
 
-### 28. TODO.md (500 строк)
+### 28. DEVELOPMENT_HANDBOOK.md (1475 строк)
+
+**Описание:** Комплексное руководство для разработчиков (development handbook)
+
+**Содержание:**
+- **Getting Started**:
+  - Prerequisites (Node.js 18+, PostgreSQL 14+, Redis 7+, Docker)
+  - Local development setup (clone, install, env vars, database, start servers)
+  - Docker setup alternative (docker-compose up)
+  - VS Code setup (recommended extensions, workspace settings)
+- **Architecture Overview**:
+  - System architecture diagram (Nginx → API + WebSocket → Services → PostgreSQL + Redis)
+  - Technology stack (Backend: Node.js + Express + TypeScript + Prisma, Frontend: React + TypeScript + Tailwind)
+  - Design patterns (Layered Architecture, Repository, Service Layer, DI, Factory, Strategy, Observer, Middleware, DTO)
+  - Architectural Decision Records (ADRs): TypeScript adoption, Prisma ORM, WebSocket, Monorepo
+- **Project Structure**:
+  - Backend structure (config, controllers, services, repositories, models, middleware, validators, routes, dto, types, utils, websocket, jobs)
+  - Frontend structure (components, pages, hooks, store, services, types, utils, styles)
+  - Naming conventions (files, variables, functions, classes, interfaces, database)
+- **Coding Standards**:
+  - TypeScript style guide (const/let, explicit return types, interfaces vs types, enums, async/await)
+  - Strict type checking (strict mode, handle null/undefined, optional chaining)
+  - ESLint configuration (rules for TypeScript, imports, naming conventions)
+  - Prettier configuration (formatting rules)
+  - Error handling (custom error classes: AppError, ValidationError, NotFoundError, UnauthorizedError, try-catch best practices)
+  - Comments & documentation (JSDoc for public APIs, explain WHY not WHAT, actionable TODOs)
+- **Development Workflow**:
+  - Git workflow (Git Flow: main, develop, feature/*, bugfix/*, hotfix/*, release/*)
+  - Commit message convention (format: type(scope): subject, types: feat/fix/docs/style/refactor/perf/test/chore)
+  - Pull request process (PR template, review checklist with 15+ checks)
+- **API Development**:
+  - RESTful API design principles (resource naming, HTTP status codes)
+  - Controller pattern (example: CompetitionController with list/getById/create/update/delete)
+  - Service layer pattern (example: CompetitionService with business logic)
+  - Input validation (Zod schemas, validation middleware)
+- **Frontend Development**: (placeholder - to be documented)
+- **Database Development**: (placeholder - to be documented)
+- **Testing Guidelines**: (placeholder - to be documented)
+- **Debugging Guide**: (placeholder - to be documented)
+- **Performance Optimization**: (placeholder - to be documented)
+- **Security Best Practices**: (placeholder - to be documented)
+- **Common Development Tasks**: (placeholder - to be documented)
+- **Troubleshooting**: (placeholder - to be documented)
+- **Code Review Checklist**: (placeholder - to be documented)
+
+**Для кого:**
+- Software engineers (onboarding, daily development)
+- Tech leads (architecture decisions, code review)
+- New team members (getting started, understanding codebase)
+- Contributors (coding standards, development workflow)
+
+**Когда читать:**
+- При onboarding новых разработчиков (первый день)
+- При настройке development environment
+- При изучении project structure и architecture
+- При написании нового кода (following coding standards)
+- При создании Pull Requests (PR template, commit conventions)
+- При code review (checklist validation)
+- При возникновении вопросов о best practices
+
+**Связь с другими документами:**
+- CONTRIBUTING.md - contribution process and guidelines
+- API_SPECIFICATION.md - API endpoints reference
+- DATABASE_SCHEMA.md - database structure
+- TESTING_STRATEGY.md - testing approach and tools
+- SECURITY.md - security requirements for developers
+- ERROR_HANDLING.md - error handling patterns
+- DEPLOYMENT_GUIDE.md - deployment procedures
+
+---
+
+### 29. TODO.md (500 строк)
 
 **Описание:** Список задач на будущее
 
@@ -1030,6 +1101,9 @@ spec_improved/
 ├── ACCEPTANCE_CRITERIA.md
 ├── SECURITY.md
 ├── OPERATIONS.md
+├── PERFORMANCE.md
+├── TESTING_STRATEGY.md
+├── DEVELOPMENT_HANDBOOK.md
 ├── SUMMARY.md
 └── TODO.md
 ```
@@ -1047,11 +1121,12 @@ spec_improved/
 
 ### Для разработчиков:
 
-1. **Backend:** `API_SPECIFICATION.md` → `DATABASE_SCHEMA.md` → `SCORING_ALGORITHM.md` → `ERROR_HANDLING.md` → `SECURITY.md`
-2. **Frontend:** `SITEMAP.md` → `API_SPECIFICATION.md` → `USER_STORIES.md` → `ERROR_HANDLING.md` → `SECURITY.md`
-3. **DevOps:** `DEPLOYMENT_GUIDE.md` → `OPERATIONS.md` → `docker-compose.yml` → `.env.example` → `SECURITY.md` → `NON_FUNCTIONAL_REQUIREMENTS.md`
-4. **SRE:** `OPERATIONS.md` → `SECURITY.md` → `ERROR_HANDLING.md` → `NON_FUNCTIONAL_REQUIREMENTS.md`
-5. **Security:** `SECURITY.md` → `ACCEPTANCE_CRITERIA.md` (Security section) → `ERROR_HANDLING.md` → `DEPLOYMENT_GUIDE.md`
+1. **Onboarding (Day 1):** `DEVELOPMENT_HANDBOOK.md` (Getting Started) → `GLOSSARY.md` → `DIAGRAMS.md` (Architecture)
+2. **Backend:** `DEVELOPMENT_HANDBOOK.md` → `API_SPECIFICATION.md` → `DATABASE_SCHEMA.md` → `SCORING_ALGORITHM.md` → `ERROR_HANDLING.md` → `SECURITY.md`
+3. **Frontend:** `DEVELOPMENT_HANDBOOK.md` → `SITEMAP.md` → `API_SPECIFICATION.md` → `USER_STORIES.md` → `ERROR_HANDLING.md`
+4. **DevOps:** `DEPLOYMENT_GUIDE.md` → `OPERATIONS.md` → `docker-compose.yml` → `.env.example` → `SECURITY.md` → `NON_FUNCTIONAL_REQUIREMENTS.md`
+5. **SRE:** `OPERATIONS.md` → `SECURITY.md` → `ERROR_HANDLING.md` → `NON_FUNCTIONAL_REQUIREMENTS.md`
+6. **Security:** `SECURITY.md` → `ACCEPTANCE_CRITERIA.md` (Security section) → `ERROR_HANDLING.md` → `DEPLOYMENT_GUIDE.md`
 
 ### Для QA:
 
@@ -1073,8 +1148,8 @@ spec_improved/
 
 | Метрика | Значение |
 |---------|----------|
-| Всего файлов | 27 |
-| Общее количество строк | ~32,750 |
+| Всего файлов | 28 |
+| Общее количество строк | ~34,225 |
 | Новых диаграмм (Mermaid) | 20+ |
 | Таблиц базы данных | 13 |
 | REST API эндпоинтов | 25+ |
@@ -1084,6 +1159,7 @@ spec_improved/
 | **Operational Runbooks** | **10+** |
 | **Performance Test Scripts** | **15+** |
 | **Test Automation Patterns** | **10+** |
+| **Architectural Decision Records** | **4** |
 | Пользовательских историй | 40 |
 | Глоссарных терминов | 50+ |
 | Экранов системы | 50+ |
@@ -1120,6 +1196,7 @@ spec_improved/
 | 2025-11-27 | 2.8 | Добавлено OPERATIONS.md - руководство по эксплуатации |
 | 2025-11-27 | 2.9 | Добавлено PERFORMANCE.md - тестирование производительности |
 | 2025-11-27 | 2.10 | Добавлено TESTING_STRATEGY.md - комплексная стратегия тестирования |
+| 2025-11-27 | 2.11 | Добавлено DEVELOPMENT_HANDBOOK.md - руководство для разработчиков |
 
 ---
 

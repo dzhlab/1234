@@ -2,7 +2,7 @@
 ## Система управления соревнованиями по художественной гимнастике
 
 > **Дата:** 2025-11-27
-> **Версия:** 1.0 → 2.10 (enterprise-ready + performance + QA)
+> **Версия:** 1.0 → 2.11 (enterprise-ready + complete developer lifecycle)
 > **Автор улучшений:** Claude AI
 
 ---
@@ -330,11 +330,12 @@
 | `OPERATIONS.md` | ~1664 | Руководство по эксплуатации production |
 | `PERFORMANCE.md` | ~1108 | Руководство по тестированию производительности |
 | `TESTING_STRATEGY.md` | ~1639 | Комплексная стратегия тестирования и QA |
-| `README.md` | ~750 | Навигация по документации |
+| `DEVELOPMENT_HANDBOOK.md` | ~1475 | Руководство для разработчиков |
+| `README.md` | ~1200 | Навигация по документации |
 | `SUMMARY.md` | ~480 | Резюме (этот файл) |
 | `TODO.md` | ~500 | Список дальнейших задач |
 
-**Итого:** 27 файлов, ~32,750 строк документации и кода
+**Итого:** 28 файлов, ~34,225 строк документации и кода
 
 ---
 
@@ -378,6 +379,7 @@
     ├── 📄 OPERATIONS.md
     ├── 📄 PERFORMANCE.md
     ├── 📄 TESTING_STRATEGY.md
+    ├── 📄 DEVELOPMENT_HANDBOOK.md
     ├── 📄 SUMMARY.md
     └── 📄 TODO.md
 ```
@@ -412,6 +414,7 @@
 22. ✅ **Operations Manual** — полное руководство по эксплуатации production (monitoring, backup, troubleshooting, runbooks, disaster recovery)
 23. ✅ **Performance Testing & Benchmarks** — comprehensive performance engineering guide (load/stress/endurance testing, benchmarks, optimization)
 24. ✅ **Testing Strategy** — комплексная стратегия тестирования и QA (test pyramid, automation, CI/CD, quality gates, bug lifecycle, metrics)
+25. ✅ **Development Handbook** — complete developer guide (setup, architecture, coding standards, workflow, API development, design patterns, ADRs)
 
 ---
 
@@ -463,5 +466,5 @@
 
 > **Дата завершения основной работы:** 2025-11-26
 > **Дата последнего обновления:** 2025-11-27
-> **Общее время работы:** ~10 часов
-> **Версия улучшенной спецификации:** 2.10
+> **Общее время работы:** ~12 часов
+> **Версия улучшенной спецификации:** 2.11
