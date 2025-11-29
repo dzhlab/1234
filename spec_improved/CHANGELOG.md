@@ -21,6 +21,37 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [2.8.0] - 2025-11-27
+
+### Added
+- **OPERATIONS.md** (~1664 lines): Comprehensive operations manual for production environments
+  - **Operations Overview**: SLOs (99.9% uptime), KPIs, error budget policy
+  - **System Architecture**: Production environment diagram, infrastructure components, network configuration (VPC, subnets, security groups)
+  - **Monitoring & Alerting**: Prometheus configuration, application instrumentation, alert rules (15+ alerts), Grafana dashboards, AlertManager (PagerDuty + Slack)
+  - **Logging**: Centralized ELK stack, Filebeat/Winston configuration, log rotation, useful Kibana queries
+  - **Backup & Recovery**: 3-2-1 strategy, PostgreSQL automated backups with PITR, Redis snapshots, S3 storage, backup verification
+  - **Performance Tuning**: PostgreSQL/Redis/Node.js/Nginx optimization parameters, query performance monitoring
+  - **Troubleshooting**: Common issues and solutions (high DB CPU, memory leaks, WebSocket disconnections)
+  - **Runbooks**: Database failover, clear Redis cache, scale API servers (step-by-step procedures)
+  - **Maintenance Windows**: Schedule and checklists
+  - **Disaster Recovery**: RTO 1h/RPO 15min, data center failure and corruption scenarios
+  - **Capacity Planning**: Growth projections, scaling triggers
+  - **On-Call Procedures**: Rotation schedule, alert response SLA, incident management workflow
+
+### Changed
+- **README.md**: Added OPERATIONS.md section (file #25), updated statistics (25 files, ~30,000 lines), added SRE navigation path, updated version to 2.8
+- **SUMMARY.md**: Added achievement #22 (Operations Manual), updated file count and total lines, updated version to 2.8
+- **CHANGELOG.md**: Added v2.8.0 release notes
+
+### Impact
+- **Enterprise readiness**: Complete operational documentation for enterprise-grade deployments
+- **DevOps/SRE teams** have comprehensive monitoring, alerting, troubleshooting, and runbooks
+- **System administrators** have backup/recovery, performance tuning, and maintenance procedures
+- **On-call engineers** have SLOs, error budgets, and disaster recovery playbooks
+- Full operational lifecycle coverage: monitoring, reliability, backup, performance, incident management, capacity planning
+
+---
+
 ## [2.7.0] - 2025-11-27
 
 ### Added

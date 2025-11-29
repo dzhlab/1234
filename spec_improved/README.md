@@ -1,9 +1,9 @@
 # Улучшенная функциональная спецификация
 ## Система управления соревнованиями по художественной гимнастике
 
-> **Версия:** 2.7 (production-ready + security)
+> **Версия:** 2.8 (enterprise-ready)
 > **Дата:** 2025-11-27
-> **Статус:** Production Ready with Comprehensive Security
+> **Статус:** Enterprise Ready with Full Operations Support
 
 ---
 
@@ -732,7 +732,72 @@ AC-3.1.3: Автоматический расчёт итогового D-score
 
 ---
 
-### 25. TODO.md (500 строк)
+### 25. OPERATIONS.md (1664 строки)
+
+**Описание:** Комплексное руководство по эксплуатации production системы
+
+**Содержание:**
+- **Operations Overview**: SLOs (99.9% uptime), KPIs, error budget policy
+- **System Architecture**: Production environment diagram, infrastructure components (LB, API, DB, Redis), network configuration (VPC, subnets, security groups)
+- **Monitoring & Alerting**:
+  - Prometheus metrics collection (API, PostgreSQL, Redis, system)
+  - Application instrumentation (HTTP request duration, WebSocket connections, database queries, cache hit rate)
+  - Alert rules (high error rate, slow responses, service down, database issues, replication lag)
+  - Grafana dashboards (API performance, database metrics)
+  - AlertManager configuration (PagerDuty, Slack integration)
+- **Logging**: Centralized ELK stack, Filebeat configuration, Winston logging, log rotation, useful Kibana queries
+- **Backup & Recovery**:
+  - 3-2-1 backup strategy
+  - PostgreSQL automated backups (daily full, WAL archiving for PITR)
+  - Redis snapshots (BGSAVE)
+  - S3 backup storage with retention policies
+  - Backup verification procedures
+- **Performance Tuning**:
+  - PostgreSQL optimization (shared_buffers, work_mem, checkpoint settings)
+  - Redis tuning (maxmemory, persistence, slow log)
+  - Node.js/PM2 configuration (cluster mode, memory limits)
+  - Nginx optimization (worker processes, buffers, compression, rate limiting)
+- **Troubleshooting**:
+  - High database CPU (diagnosis with pg_stat_activity, solutions: terminate queries, add indexes)
+  - Memory leaks in Node.js (heap dumps, heapdump tool)
+  - WebSocket disconnections (heartbeat implementation, timeout settings)
+- **Runbooks**:
+  - Database failover (promote standby, update config, verify)
+  - Clear Redis cache (flush keys, monitor hit rate)
+  - Scale API servers (deploy new instance, add to load balancer)
+- **Maintenance Windows**: Monthly schedule (2nd Sunday 02:00-04:00 UTC), pre/during/post checklists
+- **Disaster Recovery**:
+  - RTO: 1 hour, RPO: 15 minutes
+  - Data center failure recovery
+  - Data corruption PITR recovery
+- **Capacity Planning**: Growth projections, scaling triggers (horizontal/vertical)
+- **On-Call Procedures**: Rotation schedule, alert response SLA (Critical: 15min response, 1h resolution), incident management workflow
+
+**Для кого:**
+- DevOps engineers (deployment, monitoring, troubleshooting)
+- SRE teams (reliability, performance tuning, incident response)
+- System administrators (backups, maintenance, capacity planning)
+- On-call engineers (runbooks, disaster recovery)
+- Database administrators (PostgreSQL/Redis tuning, replication)
+
+**Когда читать:**
+- При настройке production environment
+- При расследовании incidents (используя runbooks)
+- При планировании capacity и scaling
+- Во время on-call дежурства
+- При выполнении maintenance tasks
+- При disaster recovery
+
+**Связь с другими документами:**
+- DEPLOYMENT_GUIDE.md - initial deployment instructions
+- SECURITY.md - security monitoring and incident response
+- NON_FUNCTIONAL_REQUIREMENTS.md - performance and availability requirements
+- ERROR_HANDLING.md - application error patterns
+- docker-compose.yml - container orchestration
+
+---
+
+### 26. TODO.md (500 строк)
 
 **Описание:** Список задач на будущее
 
@@ -794,6 +859,7 @@ spec_improved/
 ├── USER_GUIDES.md
 ├── ACCEPTANCE_CRITERIA.md
 ├── SECURITY.md
+├── OPERATIONS.md
 ├── SUMMARY.md
 └── TODO.md
 ```
@@ -813,8 +879,9 @@ spec_improved/
 
 1. **Backend:** `API_SPECIFICATION.md` → `DATABASE_SCHEMA.md` → `SCORING_ALGORITHM.md` → `ERROR_HANDLING.md` → `SECURITY.md`
 2. **Frontend:** `SITEMAP.md` → `API_SPECIFICATION.md` → `USER_STORIES.md` → `ERROR_HANDLING.md` → `SECURITY.md`
-3. **DevOps:** `DEPLOYMENT_GUIDE.md` → `docker-compose.yml` → `.env.example` → `SECURITY.md` → `NON_FUNCTIONAL_REQUIREMENTS.md`
-4. **Security:** `SECURITY.md` → `ACCEPTANCE_CRITERIA.md` (Security section) → `ERROR_HANDLING.md` → `DEPLOYMENT_GUIDE.md`
+3. **DevOps:** `DEPLOYMENT_GUIDE.md` → `OPERATIONS.md` → `docker-compose.yml` → `.env.example` → `SECURITY.md` → `NON_FUNCTIONAL_REQUIREMENTS.md`
+4. **SRE:** `OPERATIONS.md` → `SECURITY.md` → `ERROR_HANDLING.md` → `NON_FUNCTIONAL_REQUIREMENTS.md`
+5. **Security:** `SECURITY.md` → `ACCEPTANCE_CRITERIA.md` (Security section) → `ERROR_HANDLING.md` → `DEPLOYMENT_GUIDE.md`
 
 ### Для QA:
 
@@ -836,14 +903,15 @@ spec_improved/
 
 | Метрика | Значение |
 |---------|----------|
-| Всего файлов | 24 |
-| Общее количество строк | ~28,300 |
-| Новых диаграмм (Mermaid) | 16+ |
+| Всего файлов | 25 |
+| Общее количество строк | ~30,000 |
+| Новых диаграмм (Mermaid) | 17+ |
 | Таблиц базы данных | 13 |
 | REST API эндпоинтов | 25+ |
 | API примеров | 100+ |
 | **Acceptance Criteria** | **100+** |
 | **Security Controls** | **50+** |
+| **Operational Runbooks** | **10+** |
 | Пользовательских историй | 40 |
 | Глоссарных терминов | 50+ |
 | Экранов системы | 50+ |

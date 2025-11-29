@@ -2,7 +2,7 @@
 ## Система управления соревнованиями по художественной гимнастике
 
 > **Дата:** 2025-11-27
-> **Версия:** 1.0 → 2.7 (production-ready + security)
+> **Версия:** 1.0 → 2.8 (enterprise-ready)
 > **Автор улучшений:** Claude AI
 
 ---
@@ -327,11 +327,12 @@
 | `USER_GUIDES.md` | ~3500 | Руководства пользователя для всех ролей |
 | `ACCEPTANCE_CRITERIA.md` | ~3300 | Критерии приемки (100+ AC) |
 | `SECURITY.md` | ~2500 | Комплексная спецификация безопасности |
+| `OPERATIONS.md` | ~1664 | Руководство по эксплуатации production |
 | `README.md` | ~750 | Навигация по документации |
 | `SUMMARY.md` | ~480 | Резюме (этот файл) |
 | `TODO.md` | ~500 | Список дальнейших задач |
 
-**Итого:** 24 файла, ~28,300 строк документации и кода
+**Итого:** 25 файлов, ~30,000 строк документации и кода
 
 ---
 
@@ -372,6 +373,7 @@
     ├── 📄 USER_GUIDES.md
     ├── 📄 ACCEPTANCE_CRITERIA.md
     ├── 📄 SECURITY.md
+    ├── 📄 OPERATIONS.md
     ├── 📄 SUMMARY.md
     └── 📄 TODO.md
 ```
@@ -403,6 +405,7 @@
 19. ✅ **User Guides** — руководства для всех 7 ролей пользователей
 20. ✅ **Acceptance Criteria** — 100+ детальных критериев приемки Given-When-Then для всех функций
 21. ✅ **Security Specification** — комплексная спецификация безопасности (authentication, authorization, encryption, compliance)
+22. ✅ **Operations Manual** — полное руководство по эксплуатации production (monitoring, backup, troubleshooting, runbooks, disaster recovery)
 
 ---
 
