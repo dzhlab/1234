@@ -1,9 +1,9 @@
 # Улучшенная функциональная спецификация
 ## Система управления соревнованиями по художественной гимнастике
 
-> **Версия:** 2.11 (enterprise-ready + complete developer onboarding)
+> **Версия:** 2.12 (enterprise-ready + production deployment)
 > **Дата:** 2025-11-27
-> **Статус:** Enterprise Ready with Complete Development Lifecycle
+> **Статус:** Enterprise Ready with Complete Production Deployment Checklist
 
 ---
 
@@ -1038,7 +1038,99 @@ AC-3.1.3: Автоматический расчёт итогового D-score
 
 ---
 
-### 29. TODO.md (500 строк)
+### 29. PRODUCTION_READINESS.md (1068 строк)
+
+**Описание:** Комплексный чеклист готовности к production deployment
+
+**Содержание:**
+- **Introduction**: Purpose (ensure production readiness), how to use checklist, checklist status tracking table (144 items across 11 categories)
+- **Pre-Production Checklist**: Stakeholder sign-offs (Product Owner, Engineering, QA, Operations, Security), risk assessment, rollback plan
+- **Code Quality** (15 items):
+  - Code review (100% peer-reviewed, ESLint/Prettier passes)
+  - Testing (unit 70%+, integration 100%, E2E 100%, regression 155 tests)
+  - Static analysis (TypeScript strict mode, SonarQube, npm audit)
+  - Build & deployment (production build, CI/CD pipeline passing)
+- **Security** (20 items):
+  - Authentication & authorization (JWT RS256, bcrypt, 2FA, RBAC, 7 roles)
+  - Data protection (encryption at rest/transit, TLS 1.2/1.3, data minimization)
+  - Application security (input validation, SQL injection/XSS/CSRF protection, rate limiting, security headers)
+  - Security testing (OWASP ZAP, Snyk, penetration testing, security audit)
+- **Performance** (12 items):
+  - Load testing (500 concurrent users, 1000 RPS, <1% error rate)
+  - API response times (p50 <100ms, p95 <200ms, p99 <500ms)
+  - Stress testing (breaking point 2000 users, graceful degradation)
+  - Frontend performance (Lighthouse ≥90, Core Web Vitals: LCP <2.5s, FID <100ms, CLS <0.1)
+  - Caching strategy (Redis, HTTP caching, CDN)
+- **Reliability & Availability** (10 items):
+  - High availability (DB replication, 2+ API instances, load balancer, Redis Sentinel)
+  - Error handling (graceful degradation, circuit breaker, structured errors)
+  - Timeouts & retries (30s timeouts, exponential backoff, max 3 retries)
+- **Monitoring & Observability** (15 items):
+  - Application monitoring (Prometheus metrics, Grafana dashboards, business metrics)
+  - Logging (ELK stack, Winston + Filebeat, 30-day retention, structured JSON logs)
+  - Alerting (15+ alert rules, PagerDuty + Slack, runbooks for alerts)
+  - Error tracking (Sentry for frontend/backend, source maps uploaded)
+- **Data & Database** (12 items):
+  - Schema & migrations (migrations tested/reversible, indexes on FKs, constraints)
+  - Data quality (validation triggers, audit logging, data cleanup)
+  - Backup & recovery (daily full backups, WAL archiving, offsite S3 storage, 30-day retention, restore tested RTO <1h)
+  - Performance tuning (PostgreSQL tuning, query optimization, connection pooling)
+- **Infrastructure** (18 items):
+  - Server configuration (OS patched, resource sizing, firewall rules, VPC with private subnets)
+  - Load balancer (Nginx configured, SSL termination, health checks, auto-renewal Let's Encrypt)
+  - DNS (A records, TTL settings, DNS failover)
+  - Container orchestration (Docker images scanned, resource limits, restart policies)
+  - Secrets management (HashiCorp Vault, no hardcoded secrets, rotation policy)
+- **Documentation** (10 items):
+  - Technical docs (API spec, architecture diagrams, ADRs, ER diagram)
+  - Operational docs (runbooks tested, DR plan, deployment guide, rollback procedure)
+  - User documentation (user guides for 7 roles, screenshots/videos, release notes)
+- **Operational Readiness** (14 items):
+  - On-call setup (rotation schedule, PagerDuty escalation, on-call training)
+  - Incident management (severity levels, response procedures, post-mortem process)
+  - Change management (CAB approval, change request, maintenance windows)
+  - Support (support team trained, escalation path L1→L2→L3, bug reporting process)
+- **Compliance & Legal** (8 items):
+  - GDPR compliance (data subject rights, privacy policy, cookie consent)
+  - Data retention (retention periods, automated cleanup, audit logs)
+  - Terms of Service (ToS drafted, user acceptance workflow)
+- **Disaster Recovery** (10 items):
+  - Backup validation (monthly restore tests, data validated, checksums verified)
+  - Failover testing (DB failover <5min, application failover, no downtime)
+  - Disaster scenarios (data center failure, data corruption, point-in-time recovery)
+- **Go-Live Checklist**: Pre-launch 24h (code freeze, staging validation, production prep, team readiness), launch day (deployment, smoke tests, monitoring validation, communication), post-launch 24h (monitoring, user feedback, team debrief)
+- **Post-Launch Monitoring**: Week 1 (daily standups, performance review), Week 2-4 (stability review, capacity review), post-launch retrospective
+- **Appendices**: Contacts table, key URLs, critical thresholds table, sign-off table
+
+**Для кого:**
+- Release managers (go-live checklist, launch coordination)
+- Tech leads (code quality, architecture validation)
+- DevOps teams (infrastructure, deployment validation)
+- SRE teams (monitoring, reliability, disaster recovery)
+- Security teams (security audit, compliance verification)
+- QA teams (testing validation, acceptance criteria)
+- Product managers (stakeholder sign-offs, UAT approval)
+
+**Когда читать:**
+- 1 месяц до production launch (start checklist tracking)
+- 1 неделя до launch (validate all items 80%+ complete)
+- 3 дня до launch (QA/Engineering sign-offs)
+- 1 день до launch (final validation, team readiness)
+- Launch day (go-live procedure, smoke tests)
+- Post-launch (monitoring, retrospective)
+
+**Связь с другими документами:**
+- DEPLOYMENT_GUIDE.md - deployment procedures (referenced in infrastructure section)
+- OPERATIONS.md - runbooks, monitoring, disaster recovery
+- SECURITY.md - security requirements and controls
+- TESTING_STRATEGY.md - testing types and coverage requirements
+- PERFORMANCE.md - performance benchmarks and SLOs
+- DATABASE_SCHEMA.md - database structure and migrations
+- API_SPECIFICATION.md - API documentation validation
+
+---
+
+### 30. TODO.md (500 строк)
 
 **Описание:** Список задач на будущее
 
@@ -1104,6 +1196,7 @@ spec_improved/
 ├── PERFORMANCE.md
 ├── TESTING_STRATEGY.md
 ├── DEVELOPMENT_HANDBOOK.md
+├── PRODUCTION_READINESS.md
 ├── SUMMARY.md
 └── TODO.md
 ```
@@ -1148,8 +1241,8 @@ spec_improved/
 
 | Метрика | Значение |
 |---------|----------|
-| Всего файлов | 28 |
-| Общее количество строк | ~34,225 |
+| Всего файлов | 29 |
+| Общее количество строк | ~35,293 |
 | Новых диаграмм (Mermaid) | 20+ |
 | Таблиц базы данных | 13 |
 | REST API эндпоинтов | 25+ |
@@ -1160,6 +1253,7 @@ spec_improved/
 | **Performance Test Scripts** | **15+** |
 | **Test Automation Patterns** | **10+** |
 | **Architectural Decision Records** | **4** |
+| **Production Readiness Checklist Items** | **144** |
 | Пользовательских историй | 40 |
 | Глоссарных терминов | 50+ |
 | Экранов системы | 50+ |
@@ -1197,6 +1291,7 @@ spec_improved/
 | 2025-11-27 | 2.9 | Добавлено PERFORMANCE.md - тестирование производительности |
 | 2025-11-27 | 2.10 | Добавлено TESTING_STRATEGY.md - комплексная стратегия тестирования |
 | 2025-11-27 | 2.11 | Добавлено DEVELOPMENT_HANDBOOK.md - руководство для разработчиков |
+| 2025-11-27 | 2.12 | Добавлено PRODUCTION_READINESS.md - чеклист готовности к production |
 
 ---
 
