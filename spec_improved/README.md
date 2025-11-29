@@ -1,9 +1,9 @@
 # Улучшенная функциональная спецификация
 ## Система управления соревнованиями по художественной гимнастике
 
-> **Версия:** 2.9 (enterprise-ready + performance)
+> **Версия:** 2.10 (enterprise-ready + performance + QA)
 > **Дата:** 2025-11-27
-> **Статус:** Enterprise Ready with Full Operations & Performance Testing
+> **Статус:** Enterprise Ready with Full Testing Strategy
 
 ---
 
@@ -870,7 +870,104 @@ AC-3.1.3: Автоматический расчёт итогового D-score
 
 ---
 
-### 27. TODO.md (500 строк)
+### 27. TESTING_STRATEGY.md (1639 строк)
+
+**Описание:** Комплексная стратегия тестирования и обеспечения качества
+
+**Содержание:**
+- **Testing Overview**:
+  - Testing objectives (FIG compliance, scoring accuracy, real-time sync, offline mode)
+  - Testing principles (shift left, risk-based, automation, continuous testing)
+  - Test strategy diagram (development → pre-production → production phases)
+- **Test Pyramid**:
+  - Test distribution (70% unit, 20% integration, 10% E2E)
+  - Execution speed and cost analysis
+  - Rationale for pyramid structure
+- **Testing Types**:
+  - **Functional Testing**: Unit (Jest, 70% coverage), Integration (Supertest, API/DB/WebSocket), E2E (Playwright, critical user flows)
+  - **Non-Functional Testing**: Performance (k6, Artillery), Security (OWASP ZAP, Snyk), Usability (SUS >70), Accessibility (WCAG 2.1 AA, axe-core), Compatibility (browsers, devices, networks)
+- **Test Automation Strategy**:
+  - Automation pyramid and coverage goals (90% roadmap)
+  - Page Object Model (POM) pattern for E2E tests
+  - Test Data Factory pattern (Faker.js)
+- **Testing Tools & Frameworks**:
+  - Tool stack (Jest, Playwright, k6, OWASP ZAP, Percy, axe-core, BrowserStack)
+  - CI/CD integration (GitHub Actions workflow with 5 jobs: lint, unit, E2E, security, performance)
+- **Test Data Management**:
+  - Test data strategy (synthetic for dev, anonymized prod for QA)
+  - Data categories (minimal, standard, large datasets)
+  - Anonymization scripts for production data
+  - Test data factories with realistic FIG data
+- **Test Environments**:
+  - Environment strategy (Local, Dev, QA, Staging, Performance, Production)
+  - Configuration management (environment variables YAML)
+  - Docker Compose provisioning for test environments
+- **CI/CD Integration**:
+  - Testing pipeline stages (Mermaid diagram: commit → build → deploy → test)
+  - Quality gates (5 gates: pre-merge, dev, QA, staging, production)
+  - Test reporting (Allure, Codecov, k6 HTML, OWASP ZAP)
+- **Test Coverage Requirements**:
+  - Coverage targets by layer (business logic 90%, API 80%, DB 70%, frontend 75%)
+  - Critical modules requiring 100% coverage (scoring algorithms, authorization, validation)
+  - Coverage enforcement (pre-commit hooks, GitHub Actions checks)
+- **Quality Gates**:
+  - Definition of Done (code, tests, documentation, QA, deployment)
+  - Bug severity & priority matrix (Critical/High/Medium/Low, P0-P3)
+  - Response SLAs (Critical: 4h, High: 24h, Medium: 3 days, Low: next sprint)
+- **Bug Lifecycle**:
+  - Bug states (Mermaid state diagram: New → Assigned → InProgress → InReview → InTesting → Verified → Closed)
+  - Bug report template (summary, environment, steps, expected/actual, severity/priority)
+  - Bug triage process (daily meeting, decision tree, assignment)
+- **Testing Metrics & KPIs**:
+  - Key metrics (test coverage 70%, pass rate 95%, MTTD <2h, MTTR <4h, defect density <5/1000 LOC)
+  - Test execution dashboard (Grafana panels: pass rate, coverage trend, flaky tests, execution time)
+  - Weekly quality scorecard template
+- **Risk-Based Testing**:
+  - Risk assessment matrix (scoring algorithm risk score 9, authentication 6, reports export 3)
+  - Risk score calculation formula (business impact × 3 + complexity × 2 + change frequency)
+  - Testing intensity by risk (P0: extensive 100% coverage, P1: thorough 85%, P2: standard 70%, P3: light 50%)
+- **Regression Testing**:
+  - Regression test suite (155 tests: 25 critical path, 40 high-risk, 60 integration, 30 visual)
+  - Execution triggers (every PR, nightly, before release)
+  - Flaky test management (track, fix, quarantine if >10% failure rate)
+- **Release Testing Checklist**:
+  - Pre-release checklist (1 week, 3 days, 1 day before + release day + post-release)
+  - Smoke test suite (Gherkin scenarios: health check, login, score submission, results display)
+  - Success criteria (100% smoke test pass rate)
+- **Appendices**:
+  - Glossary of testing terms (40+ definitions)
+  - Testing resources (links to TEST_CASES.md, PERFORMANCE.md, SECURITY.md, ISTQB)
+  - Revision history
+
+**Для кого:**
+- QA engineers (test planning, execution, automation)
+- Test managers (strategy, metrics, quality gates)
+- Developers (unit testing, TDD, code coverage)
+- DevOps (CI/CD integration, test environments)
+- Product managers (acceptance criteria, UAT)
+- Release managers (release checklists, quality gates)
+
+**Когда читать:**
+- При onboarding новых QA engineers
+- При планировании test automation roadmap
+- При настройке CI/CD testing pipeline
+- Перед major releases (checklist validation)
+- При review testing metrics and KPIs
+- При troubleshooting flaky tests
+- При defining acceptance criteria для новых features
+
+**Связь с другими документами:**
+- TEST_CASES.md - detailed test cases (40+ test scenarios)
+- PERFORMANCE.md - performance testing detailed guide
+- SECURITY.md - security testing requirements (OWASP Top 10)
+- ACCEPTANCE_CRITERIA.md - acceptance criteria (100+ Given-When-Then)
+- CONTRIBUTING.md - development workflow and code review
+- OPERATIONS.md - monitoring and production quality
+- API_SPECIFICATION.md - API endpoints for integration testing
+
+---
+
+### 28. TODO.md (500 строк)
 
 **Описание:** Список задач на будущее
 
@@ -976,9 +1073,9 @@ spec_improved/
 
 | Метрика | Значение |
 |---------|----------|
-| Всего файлов | 26 |
-| Общее количество строк | ~31,100 |
-| Новых диаграмм (Mermaid) | 17+ |
+| Всего файлов | 27 |
+| Общее количество строк | ~32,750 |
+| Новых диаграмм (Mermaid) | 20+ |
 | Таблиц базы данных | 13 |
 | REST API эндпоинтов | 25+ |
 | API примеров | 100+ |
@@ -986,6 +1083,7 @@ spec_improved/
 | **Security Controls** | **50+** |
 | **Operational Runbooks** | **10+** |
 | **Performance Test Scripts** | **15+** |
+| **Test Automation Patterns** | **10+** |
 | Пользовательских историй | 40 |
 | Глоссарных терминов | 50+ |
 | Экранов системы | 50+ |
@@ -1021,6 +1119,7 @@ spec_improved/
 | 2025-11-27 | 2.7 | Добавлено SECURITY.md - спецификация безопасности |
 | 2025-11-27 | 2.8 | Добавлено OPERATIONS.md - руководство по эксплуатации |
 | 2025-11-27 | 2.9 | Добавлено PERFORMANCE.md - тестирование производительности |
+| 2025-11-27 | 2.10 | Добавлено TESTING_STRATEGY.md - комплексная стратегия тестирования |
 
 ---
 

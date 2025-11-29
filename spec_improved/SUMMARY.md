@@ -2,7 +2,7 @@
 ## Система управления соревнованиями по художественной гимнастике
 
 > **Дата:** 2025-11-27
-> **Версия:** 1.0 → 2.9 (enterprise-ready + performance)
+> **Версия:** 1.0 → 2.10 (enterprise-ready + performance + QA)
 > **Автор улучшений:** Claude AI
 
 ---
@@ -329,11 +329,12 @@
 | `SECURITY.md` | ~2500 | Комплексная спецификация безопасности |
 | `OPERATIONS.md` | ~1664 | Руководство по эксплуатации production |
 | `PERFORMANCE.md` | ~1108 | Руководство по тестированию производительности |
+| `TESTING_STRATEGY.md` | ~1639 | Комплексная стратегия тестирования и QA |
 | `README.md` | ~750 | Навигация по документации |
 | `SUMMARY.md` | ~480 | Резюме (этот файл) |
 | `TODO.md` | ~500 | Список дальнейших задач |
 
-**Итого:** 26 файлов, ~31,100 строк документации и кода
+**Итого:** 27 файлов, ~32,750 строк документации и кода
 
 ---
 
@@ -376,6 +377,7 @@
     ├── 📄 SECURITY.md
     ├── 📄 OPERATIONS.md
     ├── 📄 PERFORMANCE.md
+    ├── 📄 TESTING_STRATEGY.md
     ├── 📄 SUMMARY.md
     └── 📄 TODO.md
 ```
@@ -409,6 +411,7 @@
 21. ✅ **Security Specification** — комплексная спецификация безопасности (authentication, authorization, encryption, compliance)
 22. ✅ **Operations Manual** — полное руководство по эксплуатации production (monitoring, backup, troubleshooting, runbooks, disaster recovery)
 23. ✅ **Performance Testing & Benchmarks** — comprehensive performance engineering guide (load/stress/endurance testing, benchmarks, optimization)
+24. ✅ **Testing Strategy** — комплексная стратегия тестирования и QA (test pyramid, automation, CI/CD, quality gates, bug lifecycle, metrics)
 
 ---
 
@@ -460,5 +463,5 @@
 
 > **Дата завершения основной работы:** 2025-11-26
 > **Дата последнего обновления:** 2025-11-27
-> **Общее время работы:** ~8 часов
-> **Версия улучшенной спецификации:** 2.9
+> **Общее время работы:** ~10 часов
+> **Версия улучшенной спецификации:** 2.10
