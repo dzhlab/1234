@@ -2,7 +2,7 @@
 ## Система управления соревнованиями по художественной гимнастике
 
 > **Дата:** 2025-11-27
-> **Версия:** 1.0 → 2.8 (enterprise-ready)
+> **Версия:** 1.0 → 2.9 (enterprise-ready + performance)
 > **Автор улучшений:** Claude AI
 
 ---
@@ -328,11 +328,12 @@
 | `ACCEPTANCE_CRITERIA.md` | ~3300 | Критерии приемки (100+ AC) |
 | `SECURITY.md` | ~2500 | Комплексная спецификация безопасности |
 | `OPERATIONS.md` | ~1664 | Руководство по эксплуатации production |
+| `PERFORMANCE.md` | ~1108 | Руководство по тестированию производительности |
 | `README.md` | ~750 | Навигация по документации |
 | `SUMMARY.md` | ~480 | Резюме (этот файл) |
 | `TODO.md` | ~500 | Список дальнейших задач |
 
-**Итого:** 25 файлов, ~30,000 строк документации и кода
+**Итого:** 26 файлов, ~31,100 строк документации и кода
 
 ---
 
@@ -374,6 +375,7 @@
     ├── 📄 ACCEPTANCE_CRITERIA.md
     ├── 📄 SECURITY.md
     ├── 📄 OPERATIONS.md
+    ├── 📄 PERFORMANCE.md
     ├── 📄 SUMMARY.md
     └── 📄 TODO.md
 ```
@@ -406,6 +408,7 @@
 20. ✅ **Acceptance Criteria** — 100+ детальных критериев приемки Given-When-Then для всех функций
 21. ✅ **Security Specification** — комплексная спецификация безопасности (authentication, authorization, encryption, compliance)
 22. ✅ **Operations Manual** — полное руководство по эксплуатации production (monitoring, backup, troubleshooting, runbooks, disaster recovery)
+23. ✅ **Performance Testing & Benchmarks** — comprehensive performance engineering guide (load/stress/endurance testing, benchmarks, optimization)
 
 ---
 
@@ -457,5 +460,5 @@
 
 > **Дата завершения основной работы:** 2025-11-26
 > **Дата последнего обновления:** 2025-11-27
-> **Общее время работы:** ~6 часов
-> **Версия улучшенной спецификации:** 2.5
+> **Общее время работы:** ~8 часов
+> **Версия улучшенной спецификации:** 2.9

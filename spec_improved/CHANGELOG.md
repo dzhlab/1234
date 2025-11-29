@@ -21,6 +21,39 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [2.9.0] - 2025-11-27
+
+### Added
+- **PERFORMANCE.md** (~1108 lines): Comprehensive performance testing and benchmarking guide
+  - **Performance Overview**: Testing strategy diagram, key metrics (response time p50/p95/p99, throughput, error rate, resource utilization)
+  - **Performance Requirements**: SLOs (API <200ms p95, DB <50ms p95, WebSocket <100ms latency), expected load (500 concurrent users, 1000 RPS)
+  - **Load Testing**: k6 scripts with full user flows (login → competitions → athletes → scores), Artillery configuration, baseline results (500 users: p95 187ms, 1250 RPS)
+  - **Stress Testing**: Finding system limits (100 → 500 → 1000 → 2000 users), monitoring commands, identifying breaking points, recovery testing
+  - **Endurance Testing**: 24-hour soak test configuration, memory leak detection, resource monitoring over time
+  - **Spike Testing**: Sudden traffic spike scenarios (50 → 1000 users), burst capacity validation
+  - **Database Performance**: pgbench benchmarks (TPS, latency), query performance analysis with EXPLAIN ANALYZE, connection pool load testing
+  - **API Benchmarks**: Apache Bench (ab) tests, wrk with Lua scripting, concurrent request testing
+  - **WebSocket Performance**: k6 WebSocket load testing, real-time message latency measurement, connection scalability testing
+  - **Frontend Performance**: Lighthouse CI integration, WebPageTest configuration, Core Web Vitals monitoring (LCP, FID, CLS)
+  - **Performance Optimization**: Backend checklist (caching, DB queries, connection pooling, async processing), database checklist (indexing, query optimization, partitioning), frontend checklist (code splitting, lazy loading, image optimization, CDN)
+  - **Continuous Performance Testing**: GitHub Actions workflow for automated performance testing on PRs, performance budgets and regression detection
+
+### Changed
+- **README.md**: Added PERFORMANCE.md section (file #26), updated statistics (26 files, ~31,100 lines), added performance engineering navigation path, updated version to 2.9
+- **SUMMARY.md**: Added achievement #23 (Performance Testing & Benchmarks), updated file count (25 → 26) and total lines (~30,000 → ~31,100), updated version to 2.9
+- **CHANGELOG.md**: Added v2.9.0 release notes
+
+### Impact
+- **Performance engineers** have comprehensive testing strategy with ready-to-use scripts and benchmarks
+- **DevOps teams** can integrate performance testing into CI/CD pipelines with automated regression detection
+- **QA teams** can validate system meets SLOs (<200ms p95, 1000 RPS) before production deployment
+- **Developers** have optimization checklists for backend, database, and frontend performance improvements
+- **System architects** can perform capacity planning with load/stress/endurance testing results
+- Complete performance testing lifecycle: requirements → testing → optimization → continuous monitoring
+- Ready-to-execute k6, Artillery, pgbench, ab, wrk, and Lighthouse CI configurations
+
+---
+
 ## [2.8.0] - 2025-11-27
 
 ### Added

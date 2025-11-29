@@ -1,9 +1,9 @@
 # Улучшенная функциональная спецификация
 ## Система управления соревнованиями по художественной гимнастике
 
-> **Версия:** 2.8 (enterprise-ready)
+> **Версия:** 2.9 (enterprise-ready + performance)
 > **Дата:** 2025-11-27
-> **Статус:** Enterprise Ready with Full Operations Support
+> **Статус:** Enterprise Ready with Full Operations & Performance Testing
 
 ---
 
@@ -797,7 +797,80 @@ AC-3.1.3: Автоматический расчёт итогового D-score
 
 ---
 
-### 26. TODO.md (500 строк)
+### 26. PERFORMANCE.md (1108 строк)
+
+**Описание:** Руководство по тестированию производительности и бенчмаркам
+
+**Содержание:**
+- **Performance Overview**: Strategy diagram, key metrics (response time p50/p95/p99, throughput, error rate, concurrent users)
+- **Performance Requirements**:
+  - SLOs (API <200ms p95, DB <50ms p95, WebSocket <100ms latency)
+  - Resource requirements (minimum/recommended configurations)
+  - Expected load (500 users, 200 competitions/month, 1M requests/day)
+- **Load Testing**:
+  - k6 scripts (full user flow: login → competitions → athletes → scores)
+  - Artillery configuration (YAML + phases)
+  - Baseline results (500 users: p95 187ms, 1250 RPS, 0.02% errors)
+- **Stress Testing**:
+  - Finding system limits (100 → 500 → 1000 → 2000 users)
+  - Monitoring commands (CPU, memory, DB connections, response time)
+  - Expected breaking points (2000 users, 150 DB connections, 10k Redis ops/sec)
+- **Endurance Testing**:
+  - 24-hour soak test configuration
+  - Memory leak detection (Python analysis script)
+  - Metrics logging every 5 minutes
+- **Spike Testing**:
+  - Sudden traffic spike (50 → 1000 users in 10s)
+  - Expected behavior (auto-scaling, rate limiting, graceful degradation)
+- **Database Performance**:
+  - pgbench benchmarking (TPC-B, custom SQL scripts)
+  - Query performance testing (EXPLAIN ANALYZE, index effectiveness)
+  - Connection pool testing (Node.js Pool with 100 concurrent queries)
+- **API Benchmarks**:
+  - Apache Bench (ab) commands
+  - wrk advanced benchmarking with Lua scripts
+  - Expected results (>1000 RPS, <100ms mean latency)
+- **WebSocket Performance**:
+  - k6 WebSocket load testing (500 concurrent connections)
+  - Latency testing (ping-pong with statistics)
+- **Frontend Performance**:
+  - Lighthouse CI configuration (Performance >90, FCP <1.8s, LCP <2.5s)
+  - WebPageTest integration
+- **Performance Optimization**:
+  - Backend checklist (compression, HTTP/2, caching, connection pooling)
+  - Database checklist (indexes, partitioning, shared_buffers, prepared statements)
+  - Frontend checklist (minification, code splitting, lazy loading, bundle <250KB)
+- **Continuous Performance Testing**:
+  - GitHub Actions workflow (daily automated tests)
+  - Performance budget JSON configuration
+  - CI/CD integration with thresholds
+- **Performance Report Template**: Structured format with metrics, issues, recommendations
+
+**Для кого:**
+- Performance engineers (benchmarking, optimization)
+- SRE teams (load testing, capacity planning)
+- QA engineers (performance test automation)
+- DevOps (CI/CD performance gates)
+- Backend developers (query optimization, caching strategies)
+
+**Когда читать:**
+- При настройке performance testing pipeline
+- Перед major releases (performance validation)
+- При расследовании performance degradation
+- При capacity planning для scaling
+- При оптимизации slow endpoints
+- При настройке CI/CD performance gates
+
+**Связь с другими документами:**
+- OPERATIONS.md - monitoring metrics and SLOs
+- NON_FUNCTIONAL_REQUIREMENTS.md - performance requirements
+- ACCEPTANCE_CRITERIA.md - performance acceptance criteria
+- DATABASE_SCHEMA.md - query optimization
+- API_SPECIFICATION.md - API endpoints to test
+
+---
+
+### 27. TODO.md (500 строк)
 
 **Описание:** Список задач на будущее
 
@@ -903,8 +976,8 @@ spec_improved/
 
 | Метрика | Значение |
 |---------|----------|
-| Всего файлов | 25 |
-| Общее количество строк | ~30,000 |
+| Всего файлов | 26 |
+| Общее количество строк | ~31,100 |
 | Новых диаграмм (Mermaid) | 17+ |
 | Таблиц базы данных | 13 |
 | REST API эндпоинтов | 25+ |
@@ -912,6 +985,7 @@ spec_improved/
 | **Acceptance Criteria** | **100+** |
 | **Security Controls** | **50+** |
 | **Operational Runbooks** | **10+** |
+| **Performance Test Scripts** | **15+** |
 | Пользовательских историй | 40 |
 | Глоссарных терминов | 50+ |
 | Экранов системы | 50+ |
@@ -943,6 +1017,10 @@ spec_improved/
 | 2025-11-27 | 2.3 | Добавлены docker-compose.yml, .env.example, FAQ.md, ERROR_HANDLING.md |
 | 2025-11-27 | 2.4 | Добавлены API_EXAMPLES.md, CONTRIBUTING.md, CHANGELOG.md |
 | 2025-11-27 | 2.5 | Добавлено USER_GUIDES.md - руководства для всех ролей |
+| 2025-11-27 | 2.6 | Добавлено ACCEPTANCE_CRITERIA.md - критерии приемки |
+| 2025-11-27 | 2.7 | Добавлено SECURITY.md - спецификация безопасности |
+| 2025-11-27 | 2.8 | Добавлено OPERATIONS.md - руководство по эксплуатации |
+| 2025-11-27 | 2.9 | Добавлено PERFORMANCE.md - тестирование производительности |
 
 ---
 
