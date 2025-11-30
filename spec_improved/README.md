@@ -1,9 +1,9 @@
 # Улучшенная функциональная спецификация
 ## Система управления соревнованиями по художественной гимнастике
 
-> **Версия:** 2.12 (enterprise-ready + production deployment)
+> **Версия:** 2.13 (enterprise-ready + production support)
 > **Дата:** 2025-11-27
-> **Статус:** Enterprise Ready with Complete Production Deployment Checklist
+> **Статус:** Enterprise Ready with Complete Troubleshooting & Support Guide
 
 ---
 
@@ -1130,7 +1130,99 @@ AC-3.1.3: Автоматический расчёт итогового D-score
 
 ---
 
-### 30. TODO.md (500 строк)
+### 30. TROUBLESHOOTING.md (1350 строк)
+
+**Описание:** Comprehensive troubleshooting guide для диагностики и решения проблем в production
+
+**Содержание:**
+- **Introduction**: Purpose (systematic problem resolution), how to use guide, severity levels (P0-P3), response times
+- **Quick Diagnostic Commands**:
+  - System health check (health endpoint, detailed health check)
+  - Application status (process check, logs, metrics, error grep)
+  - Database status (PostgreSQL status, connections, slow queries, table sizes)
+  - Redis status (info, memory, clients, keyspace monitoring)
+  - Network & connectivity (ports, nginx, DNS, SSL certificate)
+  - System resources (CPU, memory, disk, I/O, network traffic)
+- **Common Issues** (6 major scenarios):
+  - Cannot connect to database (PostgreSQL not running, wrong credentials, max connections, firewall, disk full)
+  - High API response time (missing indexes, N+1 queries, pagination issues, cache failures)
+  - Authentication failed (JWT expired, Redis down, account locked, clock skew)
+  - Scoring calculation incorrect (difficulty coefficient, execution input, deduction bugs, cache issues)
+  - File upload failed (size limits, nginx config, disk space, permissions, timeouts)
+  - Frontend not loading (build missing, CORS errors, JavaScript errors, API URL misconfigured)
+- **System Component Troubleshooting**:
+  - **Database (PostgreSQL)**: Connection pool exhausted, slow queries (EXPLAIN ANALYZE, indexes), database locks
+  - **Redis Cache**: Out of memory (maxmemory, eviction policy), cache miss rate too high (TTL optimization)
+  - **Application Server (Node.js)**: Memory leaks (heap snapshots, clinic doctor), high CPU usage (profiling, optimization)
+  - **Frontend (React)**: Slow rendering (React.memo, useMemo, virtualization), state management issues (stale state, race conditions)
+- **Performance Issues**:
+  - Database query performance (pg_stat_statements, indexes, covering indexes, partial indexes)
+  - API endpoint performance (response caching, pagination, projections, N+1 prevention)
+  - Frontend performance (bundle size optimization, code splitting, image optimization, responsive images)
+- **Data Integrity Issues**:
+  - Duplicate records (detection queries, unique constraints, cleanup scripts)
+  - Orphaned records (LEFT JOIN detection, foreign key constraints, CASCADE delete)
+  - Data corruption (check constraints, invalid values detection, date validation)
+- **Security Incidents**:
+  - Suspicious login activity (failed attempts, unusual locations, account locking)
+  - SQL injection attempts (log pattern detection, parameterized queries, Prisma safety)
+  - XSS attacks (script tag detection, DOMPurify sanitization, React auto-escaping)
+  - Data breach (immediate isolation, evidence preservation, credential rotation, GDPR notification)
+- **Deployment Issues**:
+  - Database migration failed (migration status, resolve/rollback, manual fixes)
+  - Zero-downtime deployment failed (blue-green strategy, health checks, nginx updates)
+  - Rollback procedure (when to rollback, git revert, database restore, cache clear)
+- **Monitoring & Alerting Issues**:
+  - Prometheus not scraping (targets check, configuration, reload)
+  - Alerts not firing (AlertManager status, rule validation, test alerts)
+  - Grafana dashboard not showing data (datasource config, query testing, dashboard import)
+- **Emergency Procedures** (P0 incidents):
+  - System down (restart procedures, dependency checks, 15-minute monitoring)
+  - Data loss (stop writes, backup restoration, PITR recovery)
+  - Security breach (system isolation, evidence preservation, credential rotation, investigation)
+  - Database corruption (pg_checksums, REINDEX, VACUUM FULL, failover)
+- **Escalation Matrix**:
+  - Contact information table (L1/L2/L3 support, DevOps, DBA, Security, Engineering Manager, CTO)
+  - Escalation path (L1 → L2 → L3 → Manager → CTO)
+  - Escalation criteria by severity (response times: P0 immediate, P1 <30min, P2 <1h, P3 <4h)
+- **Diagnostic Logs & Metrics**:
+  - Log locations (application, database, Redis, nginx, system, PM2)
+  - Log analysis commands (find errors, count by type, slow requests, access patterns)
+  - Key metrics to monitor (Prometheus queries for request rate, error rate, response time, CPU, memory, disk, database)
+  - Creating support bundle (comprehensive diagnostic package for L3/vendor support)
+- **Appendices**:
+  - **Appendix A**: Common error codes (HTTP 500/502/503/504/401/403/404/422/429 with causes and resolutions)
+  - **Appendix B**: Database error codes (PostgreSQL 23505/23503/42P01/42703/53300/57P03/40P01 with meanings)
+  - **Appendix C**: Quick reference commands (health checks, view logs, restart services, database/Redis CLI, resource monitoring)
+
+**Для кого:**
+- Support teams (L1/L2/L3 support - structured diagnostic procedures)
+- DevOps engineers (deployment issues, infrastructure troubleshooting)
+- SRE teams (production incidents, emergency procedures, escalation)
+- Developers on-call (code-level issues, performance optimization, debugging)
+- System administrators (service management, resource monitoring)
+- Database administrators (PostgreSQL issues, query optimization, backup restoration)
+
+**Когда читать:**
+- Production incident response (immediate - use Quick Diagnostic Commands)
+- On-call rotation start (review Emergency Procedures and Escalation Matrix)
+- Post-incident analysis (understand what went wrong, prevent recurrence)
+- Performance degradation (Performance Issues section)
+- Security alerts (Security Incidents section)
+- Pre-deployment preparation (know common deployment issues)
+
+**Связь с другими документами:**
+- OPERATIONS.md - operational runbooks, monitoring setup (referenced in monitoring section)
+- SECURITY.md - security controls, incident response (referenced in security incidents)
+- PERFORMANCE.md - performance benchmarks, optimization targets
+- DATABASE_SCHEMA.md - database structure, indexes (referenced in database troubleshooting)
+- API_SPECIFICATION.md - API endpoints, expected responses (referenced in API issues)
+- DEPLOYMENT_GUIDE.md - deployment procedures (referenced in deployment issues)
+- PRODUCTION_READINESS.md - pre-launch validation (prevent issues before they happen)
+
+---
+
+### 31. TODO.md (500 строк)
 
 **Описание:** Список задач на будущее
 
@@ -1197,6 +1289,7 @@ spec_improved/
 ├── TESTING_STRATEGY.md
 ├── DEVELOPMENT_HANDBOOK.md
 ├── PRODUCTION_READINESS.md
+├── TROUBLESHOOTING.md
 ├── SUMMARY.md
 └── TODO.md
 ```
@@ -1241,8 +1334,8 @@ spec_improved/
 
 | Метрика | Значение |
 |---------|----------|
-| Всего файлов | 29 |
-| Общее количество строк | ~35,293 |
+| Всего файлов | 30 |
+| Общее количество строк | ~36,643 |
 | Новых диаграмм (Mermaid) | 20+ |
 | Таблиц базы данных | 13 |
 | REST API эндпоинтов | 25+ |
@@ -1254,6 +1347,8 @@ spec_improved/
 | **Test Automation Patterns** | **10+** |
 | **Architectural Decision Records** | **4** |
 | **Production Readiness Checklist Items** | **144** |
+| **Troubleshooting Scenarios** | **50+** |
+| **Emergency Procedures** | **4** |
 | Пользовательских историй | 40 |
 | Глоссарных терминов | 50+ |
 | Экранов системы | 50+ |
@@ -1292,6 +1387,7 @@ spec_improved/
 | 2025-11-27 | 2.10 | Добавлено TESTING_STRATEGY.md - комплексная стратегия тестирования |
 | 2025-11-27 | 2.11 | Добавлено DEVELOPMENT_HANDBOOK.md - руководство для разработчиков |
 | 2025-11-27 | 2.12 | Добавлено PRODUCTION_READINESS.md - чеклист готовности к production |
+| 2025-11-27 | 2.13 | Добавлено TROUBLESHOOTING.md - comprehensive troubleshooting guide |
 
 ---
 

@@ -21,6 +21,91 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [2.13.0] - 2025-11-27
+
+### Added
+- **TROUBLESHOOTING.md** (~1350 lines): Comprehensive troubleshooting guide for production support and incident response
+  - **Introduction**: Purpose (systematic problem resolution), how to use guide (7 steps from symptom identification to incident documentation), severity levels table (P0-P3 with response times: P0 immediate <15min, P1 <1h, P2 <4h, P3 <1 business day)
+  - **Quick Diagnostic Commands** (6 categories):
+    - System health check (health endpoint curl commands, detailed health check with dependencies)
+    - Application status (process check ps aux, logs tail, metrics curl, error grep)
+    - Database status (PostgreSQL systemctl, connections count, database size, slow queries detection query, table sizes)
+    - Redis status (systemctl, CLI commands: INFO, memory, CLIENT LIST, keyspace, MONITOR)
+    - Network & connectivity (ports netstat, nginx status, API endpoint test curl, DNS nslookup, SSL certificate openssl)
+    - System resources (CPU top, memory free, disk df, I/O iostat, network iftop)
+  - **Common Issues** (6 major troubleshooting scenarios):
+    - Cannot connect to database (PostgreSQL not running, wrong credentials, max connections reached, firewall blocking, disk full - with diagnostic steps and verification)
+    - High API response time (missing indexes, N+1 queries, large result sets, cache not working, high CPU, slow external APIs - with EXPLAIN ANALYZE, index creation examples)
+    - Authentication failed (JWT expired, Redis down, account locked, clock skew - with unlock account SQL, JWT validation)
+    - Scoring calculation incorrect (difficulty coefficient, execution input errors, deduction bugs, bonus misconfiguration, rounding errors, cached values - with recalculation API)
+    - File upload failed (size limits, nginx config, disk space, permissions, timeouts - with nginx client_max_body_size fix)
+    - Frontend not loading (build missing, CORS errors, JavaScript errors, API URL misconfigured, cache issues - with CORS configuration example)
+  - **System Component Troubleshooting** (4 components):
+    - **Database (PostgreSQL)**: Connection pool exhausted (pool config, long-running transactions, kill idle connections, timeouts), slow queries (EXPLAIN ANALYZE, index creation), database locks (blocking queries detection, pg_terminate_backend)
+    - **Redis Cache**: Out of memory (maxmemory config, eviction policy, key cleanup), cache miss rate too high (hit/miss ratio calculation, TTL optimization, cache warming)
+    - **Application Server (Node.js)**: Memory leaks (heap snapshots, clinic doctor, max-old-space-size fix), high CPU usage (profiling, flame graphs, hot path optimization with Set vs Array examples)
+    - **Frontend (React)**: Slow rendering (React DevTools Profiler, React.memo, useMemo, useCallback, virtualization with react-window), state management issues (stale state, race conditions with cleanup functions, functional updates)
+  - **Performance Issues** (3 categories):
+    - Database query performance (pg_stat_statements top 10 slowest queries, indexes: regular/composite/partial/covering with SQL examples)
+    - API endpoint performance (response caching middleware, pagination implementation, database projections, N+1 prevention with Prisma include)
+    - Frontend performance (bundle size analysis, code splitting, lazy loading, responsive images with srcSet, WebP format)
+  - **Data Integrity Issues** (3 types):
+    - Duplicate records (detection queries for gymnasts/scores, unique constraints, cleanup scripts with ROW_NUMBER)
+    - Orphaned records (LEFT JOIN detection for scores without gymnast/competition, CASCADE delete, foreign key constraints)
+    - Data corruption (invalid score values, date validation, check constraints for range validation)
+  - **Security Incidents** (4 incident types):
+    - Suspicious login activity (failed attempts query, unusual locations, account locking SQL, session invalidation)
+    - SQL injection attempts (log pattern detection with grep, parameterized queries with Prisma, raw SQL safety)
+    - XSS attacks (script tag detection in database, cleanup with regexp_replace, DOMPurify sanitization, React escaping)
+    - Data breach (immediate actions: isolation with ufw, evidence preservation tar backup, access log review, credential rotation, notification procedure: <1h notify team, 24h assess scope, 72h notify users/GDPR)
+  - **Deployment Issues** (3 scenarios):
+    - Database migration failed (migration status check, resolve/rollback commands, manual fix with _prisma_migrations table)
+    - Zero-downtime deployment failed (blue-green strategy steps: start green instances → health check → nginx update → monitor → stop blue)
+    - Rollback procedure (when to rollback criteria, steps: git revert → rebuild → database restore → cache flush → verification)
+  - **Monitoring & Alerting Issues** (3 problems):
+    - Prometheus not scraping (targets check, metrics endpoint test, configuration validation, reload)
+    - Alerts not firing (AlertManager status, rule validation with promtool, test alert curl)
+    - Grafana dashboard not showing data (datasource config, query testing, dashboard import, database reset)
+  - **Emergency Procedures** (4 P0 incident types):
+    - System down (5-minute immediate actions, recovery steps: restart app/DB/Redis, log review, health checks, 15-minute monitoring)
+    - Data loss (immediate: stop writes, assess scope, check backups, notify stakeholders; recovery: restore from backup or PITR)
+    - Security breach (immediate: isolate system with ufw, preserve evidence, revoke tokens FLUSHDB, change credentials; investigation: access logs, audit log, privilege escalation check)
+    - Database corruption (detection: pg_checksums, table integrity VACUUM ANALYZE; recovery: REINDEX, VACUUM FULL, or restore from backup, or failover to standby)
+  - **Escalation Matrix**:
+    - Contact information table (L1/L2/L3 Support, DevOps Lead, DBA, Security Lead, Engineering Manager, CTO with email/phone/availability)
+    - Escalation path diagram (L1 → L2 → L3 → Manager → CTO with conditions)
+    - Escalation criteria table (by severity: P0 immediate + Manager, P1 <30min, P2 <1h to L2 → <2h to L3, P3 <4h to L2)
+  - **Diagnostic Logs & Metrics**:
+    - Log locations (application, database, Redis, nginx, system, PM2 paths)
+    - Log analysis commands (find errors last hour, count by type, slow requests >1s, nginx access patterns, rate limiting)
+    - Key metrics to monitor (15 Prometheus queries: request rate, error rate, response time p95, active requests, database query duration, CPU usage, memory, disk, network, DB connections, slow queries, cache hit rate)
+    - Creating support bundle (comprehensive diagnostic script: system info, PM2 status, logs last 1000 lines, database info, Redis info, metrics snapshot, tar.gz compression)
+  - **Appendices**:
+    - **Appendix A**: Common HTTP error codes table (500/502/503/504/401/403/404/422/429 with meaning, common cause, resolution)
+    - **Appendix B**: Database error codes table (PostgreSQL 23505/23503/42P01/42703/53300/57P03/40P01 with meaning, cause, resolution)
+    - **Appendix C**: Quick reference commands (health checks, view logs, restart services, database psql, Redis CLI, resource monitoring)
+
+### Changed
+- **README.md**: Added TROUBLESHOOTING.md section (file #30), updated version to 2.13, updated status to "Enterprise Ready with Complete Troubleshooting & Support Guide", updated statistics (30 files, ~36,643 lines), added metrics "Troubleshooting Scenarios: 50+" and "Emergency Procedures: 4", updated file structure tree
+- **SUMMARY.md**: Added achievement #27 (Troubleshooting Guide), updated file count (29 → 30) and total lines (~35,293 → ~36,643), updated version to 2.13, updated work time (~14h → ~15h)
+- **CHANGELOG.md**: Added v2.13.0 release notes
+
+### Impact
+- **Support teams (L1/L2/L3)** have structured diagnostic procedures for 50+ common production issues with step-by-step resolution
+- **DevOps engineers** can quickly diagnose deployment issues, infrastructure problems, and service failures
+- **SRE teams** have emergency procedures for P0 incidents (system down, data loss, security breach, database corruption) with clear action steps
+- **Developers on-call** can troubleshoot code-level issues (memory leaks, high CPU, slow queries, N+1 problems) with optimization examples
+- **System administrators** have quick reference commands for service management and resource monitoring
+- **Database administrators** can diagnose PostgreSQL issues (connection pool, slow queries, locks) with detection queries and fixes
+- **Security teams** can respond to security incidents (suspicious logins, SQL injection, XSS, data breach) with immediate actions and investigation procedures
+- **All teams** have clear escalation matrix (L1→L2→L3→Manager→CTO) with contact information and escalation criteria by severity
+- Reduced MTTR (Mean Time To Repair) with quick diagnostic commands and common issue resolutions
+- Improved incident response with 4 P0 emergency procedures and response time SLAs (P0 <15min, P1 <1h, P2 <4h, P3 <1 day)
+- Complete production support coverage: diagnostics → troubleshooting → emergency response → escalation
+- Support bundle script for L3 escalation with comprehensive diagnostic data (logs, metrics, system info, database state)
+
+---
+
 ## [2.12.0] - 2025-11-27
 
 ### Added

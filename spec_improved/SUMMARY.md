@@ -2,7 +2,7 @@
 ## Система управления соревнованиями по художественной гимнастике
 
 > **Дата:** 2025-11-27
-> **Версия:** 1.0 → 2.12 (enterprise-ready + production deployment)
+> **Версия:** 1.0 → 2.13 (enterprise-ready + production support)
 > **Автор улучшений:** Claude AI
 
 ---
@@ -332,11 +332,12 @@
 | `TESTING_STRATEGY.md` | ~1639 | Комплексная стратегия тестирования и QA |
 | `DEVELOPMENT_HANDBOOK.md` | ~1475 | Руководство для разработчиков |
 | `PRODUCTION_READINESS.md` | ~1068 | Чеклист готовности к production deployment |
-| `README.md` | ~1294 | Навигация по документации |
-| `SUMMARY.md` | ~480 | Резюме (этот файл) |
+| `TROUBLESHOOTING.md` | ~1350 | Comprehensive troubleshooting guide |
+| `README.md` | ~1391 | Навигация по документации |
+| `SUMMARY.md` | ~497 | Резюме (этот файл) |
 | `TODO.md` | ~500 | Список дальнейших задач |
 
-**Итого:** 29 файлов, ~35,293 строк документации и кода
+**Итого:** 30 файлов, ~36,643 строк документации и кода
 
 ---
 
@@ -382,6 +383,7 @@
     ├── 📄 TESTING_STRATEGY.md
     ├── 📄 DEVELOPMENT_HANDBOOK.md
     ├── 📄 PRODUCTION_READINESS.md
+    ├── 📄 TROUBLESHOOTING.md
     ├── 📄 SUMMARY.md
     └── 📄 TODO.md
 ```
@@ -418,6 +420,7 @@
 24. ✅ **Testing Strategy** — комплексная стратегия тестирования и QA (test pyramid, automation, CI/CD, quality gates, bug lifecycle, metrics)
 25. ✅ **Development Handbook** — complete developer guide (setup, architecture, coding standards, workflow, API development, design patterns, ADRs)
 26. ✅ **Production Readiness Checklist** — comprehensive production deployment checklist (144 items: code quality, security, performance, monitoring, infrastructure, disaster recovery, go-live)
+27. ✅ **Troubleshooting Guide** — comprehensive troubleshooting guide (50+ scenarios: common issues, component troubleshooting, performance, data integrity, security incidents, deployment, emergency procedures, escalation matrix)
 
 ---
 
@@ -469,5 +472,5 @@
 
 > **Дата завершения основной работы:** 2025-11-26
 > **Дата последнего обновления:** 2025-11-27
-> **Общее время работы:** ~14 часов
-> **Версия улучшенной спецификации:** 2.12
+> **Общее время работы:** ~15 часов
+> **Версия улучшенной спецификации:** 2.13
